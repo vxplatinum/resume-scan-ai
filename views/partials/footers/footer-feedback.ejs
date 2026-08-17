@@ -1,0 +1,128 @@
+<footer class="footer">
+    <div class="footer__container">
+        <a class="blocktitle--text footer__logo" href="/">
+            <img src="/img/logo2.svg" class="header__logoimg small--img" alt="">
+            ResumeScanAI
+        </a>
+        <a target="_blank" class="normal--text footer__donate" href="https://buymeacoffee.com/vxdosick">
+            <img class="small--img" src="/img/coffe.svg" alt="buymeacoffee">
+            Support the project
+        </a>
+    </div>
+</footer>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/feedback.js"></script>
+<script>
+   document.addEventListener("DOMContentLoaded", () => {
+    const resumeData = {
+      relevance: Number("<%= typeof Relevance_of_position !== 'undefined' ? Relevance_of_position : 0 %>"),
+      achievements: Number("<%= typeof Measurable_achievements !== 'undefined' ? Measurable_achievements : 0 %>"),
+      hardSkills: Number("<%= typeof Topical_hard_skills !== 'undefined' ? Topical_hard_skills : 0 %>"),
+      literacy: Number("<%= typeof Professional_literacy !== 'undefined' ? Professional_literacy : 0 %>"),
+      logicality: Number("<%= typeof Career_Logicality !== 'undefined' ? Career_Logicality : 0 %>"),
+      integrity: Number("<%= typeof Information_integrity !== 'undefined' ? Information_integrity : 0 %>")
+    };
+  const ctx = document.getElementById("radar-chart").getContext("2d");
+  const pointColors = [
+    "#ff6384",
+    "#36a2eb",
+    "#ffce56",
+    "#4bc0c0",
+    "#9966ff",
+    "#ff9f40",
+  ];
+  const data = {
+    labels: [
+      "Relevance of position",
+      "Measurable achievements",
+      "Topical hard skills",
+      "Professional literacy",
+      "Career Logicality",
+      "Information integrity",
+    ],
+    datasets: [
+      {
+        labels: ["", "", "", "", "", ""],
+        data: [resumeData.relevance, resumeData.achievements, resumeData.hardSkills, resumeData.literacy, resumeData.logicality, resumeData.integrity],
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        fill: true,
+        backgroundColor: "#f0f0f0",
+        borderColor: "#f0f0f0",
+        pointBackgroundColor: pointColors,
+        pointBorderColor: pointColors,
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(0, 0, 0)",
+      },
+    ],
+  };
+
+  const config = {
+    type: "radar",
+    data: data,
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          backgroundColor: "rgb(255, 255, 255)",
+          titleColor: "#000",
+          bodyColor: "#000",
+          borderColor: "#000",
+          borderWidth: 1,
+          cornerRadius: 10,
+          padding: 10,
+          titleFont: {
+            size: 16,
+            weight: "bold",
+            family: "Montserrat",
+          },
+          bodyFont: {
+            size: 14,
+            weight: "normal",
+            family: "Montserrat",
+          },
+          displayColors: false,
+          callbacks: {
+            title: (context) => {
+              return context[0].label;
+            },
+            label: (context) => {
+              return `Rate: ${context.formattedValue}`;
+            },
+            afterLabel: (context) => "",
+          },
+        },
+      },
+      responsive: true,
+      elements: {
+        line: {
+          borderWidth: 3,
+        },
+      },
+      scales: {
+        r: {
+          pointLabels: {
+            display: false,
+          },
+          grid: {
+            z: 100,
+          },
+          angleLines: {
+            display: true,
+          },
+          suggestedMin: 0,
+          suggestedMax: 5,
+        },
+      },
+    },
+  };
+
+  const myRadarChart = new Chart(ctx, config);
+}); 
+</script>
+</body>
+</html>

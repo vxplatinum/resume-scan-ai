@@ -1,0 +1,280 @@
+<%- include('partials/headers/header.ejs', {title: "ResumeScanAI - Instant AI Feedback on Your IT Resume", 
+url: "/", robots: "index, follow"}) %>
+<main>
+  <section class="hero blue__place margin__bottom">
+    <div class="hero__container">
+      <h1 class="title--text">Resume validity checker AI for IT specialists</h1>
+      <h2 class="normal--text">
+        ResumeScanAI is a handy tool for programmers, accessible from anywhere
+        in the world, allowing them to check resumes using artificial
+        intelligence. It is the future for employers, human resources and all
+        other IT professions
+      </h2>
+    </div>
+  </section>
+
+  <section id="how" class="howitworks margin__bottom">
+    <div class="howitworks__container">
+      <h2 class="subtitle--text">How it works</h2>
+      <div class="howitworks__content">
+        <ul class="howitworks__list normal--text">
+          <li>
+            <div>
+              <img class="small--img" src="/img/info.svg" alt="step1" />
+              <p>
+                Welcome to <b>ResumeScanAi</b>, where you can validate your
+                resume for different companies and receive both overall and
+                targeted feedback to improve it.
+              </p>
+            </div>
+            <img class="howitworks__img" src="/img/how_CV.svg" alt="Upload your CV" />
+          </li>
+          <li>
+            <div>
+              <img class="small--img" src="/img/ai.svg" alt="step2" />
+              <p>
+                Upload your <b>CV</b> in <b>PDF</b> format, select the type of
+                company you are targeting and your qualifications. This will
+                help artificial intelligence make a more accurate assessment.
+              </p>
+            </div>
+            <img class="howitworks__img" src="/img/how_pdf.svg" alt="Upload your CV" />
+          </li>
+          <li>
+            <div>
+              <img class="small--img" src="/img/feedback.svg" alt="step3" />
+              <p>
+                At the end of the review, you will receive an evaluation with
+                <b>positive</b> aspects and <b>suggestions</b> for improvement,
+                general recommendations for refining your CV.
+              </p>
+            </div>
+            <img class="howitworks__img" src="/img/how_sw.png" alt="Upload your CV" />
+          </li>
+          <li>
+            <div>
+              <img class="small--img" src="/img/graph.svg" alt="step4" />
+              <p>
+                In addition you have the opportunity to check the
+                <b>strengths</b> and <b>weaknesses</b> of your CV on an
+                interactive <b>graph</b>.
+              </p>
+            </div>
+            <img class="howitworks__img" src="/img/how_graph.png" alt="Upload your CV" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="scan margin__bottom" id="scan">
+    <div class="scan__container">
+      <h2 class="subtitle--text">Scan your resume</h2>
+      <form
+        class="scan__form"
+        action="/send-prompt"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="scan__formcontainer margin__bottom">
+          <label class="scan__file" id="drop-zone" for="file-upload">
+            <div class="preview" id="preview">
+              <img
+                src="/img/pdf-icon.svg"
+                alt="Placeholder"
+                id="decorative-image"
+              />
+              <p class="scan__placeholder">
+                Drag and drop the PDF file here or select a file
+              </p>
+            </div>
+            <input
+              type="file"
+              id="file-upload"
+              name="file"
+              accept="application/pdf"
+              required
+              hidden
+            />
+            <div class="file-name" id="file-name">File not selected</div>
+            <label for="file-upload" class="upload-button">Upload</label>
+          </label>
+          <div class="normal--text scan__radios">
+            <h3 class="blocktitle--text">Set company type</h3>
+            <label
+              ><input
+                name="companyType"
+                value="sturtup"
+                type="radio"
+                required
+              />Startups</label
+            >
+            <label
+              ><input
+                name="companyType"
+                value="bigtech"
+                type="radio"
+              />Bigtech</label
+            >
+            <label
+              ><input
+                name="companyType"
+                value="outsource"
+                type="radio"
+              />Outsourcing</label
+            >
+            <label
+              ><input name="companyType" value="product" type="radio" />Product
+              Companies</label
+            >
+            <label
+              ><input
+                name="companyType"
+                value="product"
+                type="radio"
+              />Fintech</label
+            >
+          </div>
+          <div class="normal--text scan__radios">
+            <h3 class="blocktitle--text">Set science level</h3>
+            <label
+              ><input
+                name="scienceLevel"
+                value="internship"
+                type="radio"
+                required
+              />Internship</label
+            >
+            <label
+              ><input
+                name="scienceLevel"
+                value="junior"
+                type="radio"
+              />Junior</label
+            >
+            <label
+              ><input
+                name="scienceLevel"
+                value="middle"
+                type="radio"
+              />Middle</label
+            >
+            <label
+              ><input
+                name="scienceLevel"
+                value="senior"
+                type="radio"
+              />Senior</label
+            >
+          </div>
+        </div>
+        <div class="scan__submit">
+          <button class="button--general" type="submit">Analyze</button>
+        </div>
+      </form>
+      <div class="loader">
+        <div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about blue__place margin__bottom" id="about">
+    <div class="about__container">
+      <h2 class="title--text">About Us</h2>
+      <p class="normal--text">
+        ResumeScanAi is a cutting-edge platform that leverages AI technology to
+        help individuals validate and enhance their resumes. Our service is
+        designed to offer tailored feedback based on the type of company and
+        skill levels you're targeting, ensuring your resume meets industry
+        standards. Whether you're an employer, HR specialist, or job seeker in
+        IT or any other sector, our AI-enabled resume verification provides
+        detailed insights to help you stand out. With ResumeScanAi, you can
+        receive both general and specific recommendations that will elevate your
+        resume to the next level.
+      </p>
+    </div>
+  </section>
+  <section class="faq margin__bottom" id="faq">
+    <div class="faq__container">
+      <h2 class="subtitle--text">Frequently Asked Questions</h2>
+      <ul class="faq__list normal--text">
+          <li class="faq__item">
+            <div class="faq__header">
+              <h3 class="blocktitle--text">What is it for?</h3>
+              <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+            </div>
+            <p class="faq__answer">
+              ResumeScanAI is primarily for convenience, there are a lot of tools like this out there, but all of them are large and complex systems. The genius is in the simplicity.
+            </p>
+          </li>
+          <li class="faq__item">
+            <div class="faq__header">
+              <h3 class="blocktitle--text">How does it work under the bonnet?</h3>
+              <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+            </div>
+            <p class="faq__answer">
+              Under the bonnet, a quality API is used to link your CV to an AI system that aims to both spot and globally analyse your CV.
+            </p>
+          </li>
+          <li class="faq__item">
+            <div class="faq__header">
+              <h3 class="blocktitle--text">What is the target audience?</h3> 
+              <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+            </div>
+            <p class="faq__answer">
+              First of all this tool is recognised for programmers, hr specialists and other IT specialists. But in the future we plan to extend ResumeScanAI for different fields of activity.
+            </p>
+          </li>
+          <li class="faq__item">
+            <div class="faq__header">
+              <h3 class="blocktitle--text">How long is this tool relevant for?</h3>
+              <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+            </div>
+            <p class="faq__answer">
+              This tool does not have a clear expiry date. The CV submission procedure is not new to anyone, and because of its convenience, it will remain in the hiring system for a long time to come.
+            </p>
+          </li>
+          <li class="faq__item">
+            <div class="faq__header">
+              <h3 class="blocktitle--text">What's the global goal?</h3>
+              <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+            </div>
+            <p class="faq__answer">
+              The global goal is to help people solve their problems. And one of the most annoying problems people have is the question - ‘How good is my CV for the job? What should I tweak to make my CV look better?’. That's the kind of question we help you answer.
+            </p>
+          </li>
+      </ul>
+    </div>
+  </section>
+  <section class="review margin__bottom" id="review">
+    <div class="review__container">
+      <h2 class="subtitle--text">Review</h2>
+      <div class="review__content">
+        <div>
+          <div class="review__text">
+            <img class="small--img" src="/img/heart.svg" alt="heart" />
+            <p class="normal--text">
+              Kind notes shared on Buy Me a Coffee will appear here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('partials/footers/footer.ejs') %>

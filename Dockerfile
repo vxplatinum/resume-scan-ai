@@ -1,0 +1,21 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY app.js ./
+COPY controllers ./controllers
+COPY routes ./routes
+COPY views ./views
+COPY public ./public
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+EXPOSE 3000
+
+USER node
+
+CMD ["node", "app.js"]

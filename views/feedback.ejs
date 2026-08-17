@@ -1,0 +1,147 @@
+<%- include('partials/headers/header-feedback.ejs', {title: "Feedback - ResumeScanAI", url: "/send-prompt", robots: "noindex, follow"}) %>
+<main>
+  <section id="rating" class="rating blue__place margin__bottom">
+    <h1 class="title--text">Resume Analysis</h1>
+    <h2 class="title--text">Rating: <%= rating %> / 10</h2>
+    <a class="button--general" href="/">Home</a>
+  </section>
+  <section id="strength" class="strengths margin__bottom">
+    <div class="strengths__container">
+      <h2 class="subtitle--text">Strengths</h2>
+      <% if (strengths.length > 0) { %>
+      <ul class="strengths__list">
+        <% strengths.forEach((item, index) => { %>
+        <li class="normal--text">
+          <img class="small--img" src="/img/plus.svg" alt="+" /> <%= index + 1
+          %>. <%= item %>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p>No strengths available.</p>
+      <% } %>
+    </div>
+  </section>
+  <section id="weak" class="weaknesses margin__bottom">
+    <div class="weaknesses__container">
+      <h2 class="subtitle--text">Weaknesses</h2>
+      <% if (weaknesses.length > 0) { %>
+      <ul class="weaknesses__list">
+        <% weaknesses.forEach((item, index) => { %>
+        <li class="normal--text">
+          <img class="small--img" src="/img/minus.svg" alt="-" /> <%= index + 1
+          %>. <%= item %>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p>No weaknesses available.</p>
+      <% } %>
+    </div>
+  </section>
+  <section id="graph" class="radar margin__bottom">
+    <div class="radar__container">
+      <h2 class="subtitle--text">Graph view</h2>
+    <div class="radar__content">
+      <div class="radar__chart">
+        <canvas width="800" height="800" id="radar-chart"></canvas>
+      </div>
+        <div class="radar__info">
+          <ul class="radar__list normal--text">
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                <h3 class="blocktitle--text">Relevance of position</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">How well the resume aligns with the specific role or industry targeted.
+It reflects whether the candidate's background fits the job expectations.</p>
+              </div>
+            </li>
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                <h3 class="blocktitle--text">Measurable achievements</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">Indicates whether the candidate provides concrete, quantifiable results (e.g., KPIs, impact).
+It separates vague duties from real accomplishments.</p>
+              </div>
+            </li>
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                <h3 class="blocktitle--text">Topical hard skills</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">Evaluates the presence and relevance of up-to-date, job-specific technical skills.
+Strong scores mean the candidate demonstrates competence in essential tools and technologies.</p>
+              </div>
+            </li>
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                <h3 class="blocktitle--text">Professional literacy</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">Assesses the clarity, grammar, and tone of the written content.
+It also reflects the ability to communicate professionally and effectively.</p>
+              </div>
+            </li>
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                <h3 class="blocktitle--text">Career Logicality</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">Shows the consistency and natural progression of roles and responsibilities over time.
+A logical career path suggests clear goals and professional maturity.</p>
+              </div>
+            </li>
+            <li class="radar__information">
+              <div>
+                <div class="radar__decoration"></div>
+                  <h3 class="blocktitle--text">Information integrity</h3>
+                <span class="faq__decor">
+                <div></div>
+                <div></div>
+              </span>
+              </div>
+              <div class="radar__infoblock">
+              <p class="radar__hideninfo">Measures internal consistency and plausibility across the resume.
+It ensures there are no contradictions, exaggerations, or unexplained gaps.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="summary" class="summary blue__place">
+    <div class="summary__container">
+      <h2 class="title--text">Summary</h2>
+      <p class="normal--text"><%= summary %></p>
+    </div>
+  </section>
+</main>
+<%- include('partials/footers/footer-feedback.ejs') %>
